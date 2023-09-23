@@ -8,10 +8,10 @@ class EaseDiscomfort extends StatefulWidget {
   const EaseDiscomfort({Key? key}) : super(key: key);
 
   @override
-  State<EaseDiscomfort> createState() => _AnxietyReleaseState();
+  State<EaseDiscomfort> createState() => _EaseDiscomfortState();
 }
 
-class _AnxietyReleaseState extends State<EaseDiscomfort> {
+class _EaseDiscomfortState extends State<EaseDiscomfort> {
   int _currentValue = 0;
   late Timer _timer;
   bool _isRunning = false;

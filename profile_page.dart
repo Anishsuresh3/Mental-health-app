@@ -87,7 +87,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 ListTile(
                   leading: Icon(Icons.warning_rounded),
-                  title: Text("Logout",style: TextStyle(fontSize: 25),),
+                  title: Text("Logout",style: TextStyle(fontSize: 25,color: Colors.deepOrange,fontWeight: FontWeight.bold),),
                   trailing: IconButton(
                     icon : Icon(Icons.arrow_forward_ios_outlined),
                     onPressed: (){},

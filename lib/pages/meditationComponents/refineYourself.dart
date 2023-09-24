@@ -66,7 +66,7 @@ class _RefineYourselfState extends State<RefineYourself> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("Easing Depression",style: TextStyle(
+              Text("Refine yourself",style: TextStyle(
                   fontSize: 30,color: Colors.black
               ),),
             ],

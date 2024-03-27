@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class tools extends StatelessWidget {

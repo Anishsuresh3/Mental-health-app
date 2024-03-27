@@ -1,8 +1,8 @@
-import 'package:codefury/pages/meditationComponents/anxietyRelease.dart';
-import 'package:codefury/pages/meditationComponents/easeDiscomfort.dart';
-import 'package:codefury/pages/meditationComponents/easingDepression.dart';
-import 'package:codefury/pages/meditationComponents/refineYourself.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:mental/pages/meditationComponents/anxietyRelease.dart';
+import 'package:mental/pages/meditationComponents/easeDiscomfort.dart';
+import 'package:mental/pages/meditationComponents/easingDepression.dart';
+import 'package:mental/pages/meditationComponents/refineYourself.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -33,7 +33,7 @@ class _meditateScreenState extends State<meditateScreen> {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       size: 30.0,
                       Icons.arrow_back_ios_rounded,
                       color: Colors.blueGrey,
@@ -62,7 +62,7 @@ class _meditateScreenState extends State<meditateScreen> {
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(
-                      horizontal: getProportionateScreenWidth(20)
+                      horizontal: getProportionateScreenWidth(10)
                     ),
                     child: Row(
                       children: [

@@ -1,15 +1,16 @@
-import 'package:codefury/components/botNavBar.dart';
-import 'package:codefury/components/homeTiles.dart';
-import 'package:codefury/components/homeTools.dart';
-import 'package:codefury/pages/loginPage.dart';
-import 'package:codefury/pages/meditation.dart';
-import 'package:codefury/pages/moodJournal.dart';
+import 'package:mental/components/botNavBar.dart';
+import 'package:mental/components/homeTiles.dart';
+import 'package:mental/components/homeTools.dart';
+import 'package:mental/pages/loginPage.dart';
+import 'package:mental/pages/meditation.dart';
+import 'package:mental/pages/moodJournal.dart';
 import 'package:flutter/material.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class home extends StatefulWidget {
-  const home({super.key});
+  home({super.key,required this.name});
+  String name;
 
   @override
   State<home> createState() => _homeState();
@@ -56,7 +57,7 @@ class _homeState extends State<home> {
                                   padding: const EdgeInsets.only(right: 30.0),
                                   child: Center(
                                     child: Text(
-                                      'Good Morning, \nMayur',
+                                      'Good Morning, ${widget.name}',
                                       style:  GoogleFonts.montserrat (
                                         fontSize:  25,
                                         fontWeight:  FontWeight.w700,
@@ -69,9 +70,9 @@ class _homeState extends State<home> {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: getProportionateScreenHeight(15),
-                        ),
+                        // SizedBox(
+                        //   height: getProportionateScreenHeight(15),
+                        // ),
                         Container(
                           // autogroup8sdhLWb (J8GPeExU7JmjdT4pag8sdh)
                           padding:  EdgeInsets.symmetric(
@@ -163,10 +164,6 @@ class _homeState extends State<home> {
                           name: "Meditate",
                           img: 'images/meditate.png',
                           press: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => meditateScreen()),
-                            );
                           },
                         ),
                         RecommendedList(
@@ -214,10 +211,8 @@ class _homeState extends State<home> {
                   SizedBox(
                     height: getProportionateScreenHeight(10),
                   ),
-                  tools(name: 'Mood Journal', img: 'images/moodJournal.png', color: 0xff1c7daa, press: () { Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Mood()),
-                  ); },),
+                  tools(name: 'Mood Journal', img: 'images/moodJournal.png', color: 0xff1c7daa, press: () {
+                  },),
                   SizedBox(
                     height: getProportionateScreenHeight(10),
                   ),

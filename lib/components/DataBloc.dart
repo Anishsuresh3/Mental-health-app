@@ -1,5 +1,5 @@
-import 'package:codefury/Service/ApiService.dart';
-import 'package:codefury/Service/ChatBotResponse.dart';
+import 'package:mental/Service/ApiService.dart';
+import 'package:mental/Service/ChatBotResponse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

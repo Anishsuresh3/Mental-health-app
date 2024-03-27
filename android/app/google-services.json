@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12182847229",
+    "project_id": "mental-f11e7",
+    "storage_bucket": "mental-f11e7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12182847229:android:54d9e753c587a79990c894",
+        "android_client_info": {
+          "package_name": "com.example.mental"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwKAvUXwjSqOCpbs7fe6Rm0KduYghvXj0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

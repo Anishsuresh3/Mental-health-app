@@ -1,7 +1,7 @@
-import 'package:codefury/pages/home.dart';
-import 'package:codefury/pages/signinPage.dart';
+import 'package:mental/pages/home.dart';
+import 'package:mental/pages/signinPage.dart';
 import 'package:flutter/material.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class dashboard extends StatefulWidget {

@@ -1,7 +1,8 @@
-import 'package:codefury/pages/home.dart';
-import 'package:codefury/pages/signinPage.dart';
+import 'package:mental/pages/authService.dart';
+import 'package:mental/pages/home.dart';
+import 'package:mental/pages/signinPage.dart';
 import 'package:flutter/material.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class loginPage extends StatefulWidget {
@@ -79,7 +80,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                     color: const Color(0xFFF9F9F9),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
@@ -95,6 +96,7 @@ class _loginPageState extends State<loginPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          controller: emailController,
                           decoration: InputDecoration(
                             border: InputBorder.none, // Remove the default border.
                             hintText: 'Enter your Email',
@@ -124,7 +126,7 @@ class _loginPageState extends State<loginPage> {
                     ),
                     color: const Color(0xFFF9F9F9),
                   ),
-                  child: const Row(
+                  child: Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
@@ -140,6 +142,7 @@ class _loginPageState extends State<loginPage> {
                       ),
                       Expanded(
                         child: TextField(
+                          controller: passwordController,
                           decoration: InputDecoration(
                             border: InputBorder.none, // Remove the default border.
                             hintText: 'Enter your Password',
@@ -148,8 +151,6 @@ class _loginPageState extends State<loginPage> {
                           obscureText: true,
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
@@ -165,11 +166,21 @@ class _loginPageState extends State<loginPage> {
                     vertical: getProportionateScreenWidth(20)),
                 width: double.infinity,
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => home()),
+                  onPressed: () async {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(builder: (context) => home(name: "",)),
+                    // );
+                    final message = await AuthService().login(
+                      email: emailController.text,
+                      password: passwordController.text,
                     );
+                    if (message!.contains('Success')){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => home(name: '',)),
+                      );
+                    }
                   },
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
@@ -266,45 +277,6 @@ class _loginPageState extends State<loginPage> {
               SizedBox(
                 height: getProportionateScreenHeight(20),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal:25),
-                child: Row(
-                  children: const [
-                    Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.brown,
-                        )
-                    ),
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Text('OR',
-                        style: TextStyle(color: Colors.blueGrey,fontSize: 18),
-                      ),
-                    ),
-
-                    Expanded(
-                        child: Divider(
-                          thickness: 0.5,
-                          color: Colors.brown,
-                        )
-                    )
-                  ],
-                ),
-              ),
-
-              GestureDetector(
-                onTap: () {
-                },
-                child: ClipRRect(
-                  child: Image.asset(
-                    'images/googleSignIn.png',
-                    width: 350,
-                    height: 100,
-                  ),
-                ),
-              )
             ],
           ),
         ),

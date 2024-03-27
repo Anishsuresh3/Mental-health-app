@@ -1,5 +1,7 @@
-import 'package:codefury/components/DataBloc.dart';
-import 'package:codefury/components/botNavBar.dart';
+import 'package:mental/Service/ChatBotResponse.dart';
+import 'package:mental/components/DataBloc.dart';
+import 'package:mental/components/botNavBar.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,8 +16,8 @@ class ChatBotScreen extends StatefulWidget {
 class _ChatBotScreenState extends State<ChatBotScreen> {
 
   final TextEditingController _textController = TextEditingController();
-  final List<ChatMessage> _messages = [ChatMessage(messageContent: "Hey, it’s great to see you again Mayur. What are you up to?", messageType: "ChatBot")];
-
+  final List<ChatMessage> _messages = [ChatMessage(messageContent: "Hey, it’s great to see you again Harshita. What are you up to?", messageType: "ChatBot")];
+  final dio = Dio(BaseOptions(baseUrl: 'http://10.0.2.2:8000'));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +93,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                       FloatingActionButton(
                         onPressed: (){
                           debugPrint("Hellooo");
-                          context.read<DataBloc>().add(FetchDataEvent(_textController.text));
+                          callApi(_textController.text);
                           setState(() {
                             _messages.add(ChatMessage(messageContent: _textController.text, messageType: "Sender"));
                           });
@@ -105,37 +107,66 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                   ),
                 ),
               ),
-              BlocBuilder<DataBloc, DataState>(
-                builder: (context, state) {
-                  if (state is DataLoaded) {
-                    setState(() {
-                      _messages.add(ChatMessage(
-                        messageContent: state.data.res,
-                        messageType: "ChatBot",
-                      ));
-                    });
-                  }
-                  else if(state is DataError){
-                    Fluttertoast.showToast(
-                        msg: "Opps Something went wrong!",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.white,
-                        textColor: Colors.black,
-                        fontSize: 16.0
-                    );
-                  }
-                  return SizedBox.shrink(); // This widget doesn't display anything
-                },
-              ),
+              // BlocBuilder<DataBloc, DataState>(
+              //   builder: (context, state) {
+              //     if (state is DataLoaded) {
+              //       setState(() {
+              //         _messages.add(ChatMessage(
+              //           messageContent: state.data.res,
+              //           messageType: "ChatBot",
+              //         ));
+              //       });
+              //     }
+              //     else if(state is DataError){
+              //       Fluttertoast.showToast(
+              //           msg: "Opps Something went wrong!",
+              //           toastLength: Toast.LENGTH_SHORT,
+              //           gravity: ToastGravity.CENTER,
+              //           timeInSecForIosWeb: 1,
+              //           backgroundColor: Colors.white,
+              //           textColor: Colors.black,
+              //           fontSize: 16.0
+              //       );
+              //     }
+              //     return SizedBox.shrink(); // This widget doesn't display anything
+              //   },
+              // ),
             ],
           ),
         ),
     );
 
   }
+  Future<void> callApi(String msg) async {
+    try {
+      final requestData = {
+        'inputString': msg, // Replace with the actual input data
+      };
+      final response = await dio.post('/processData', data: requestData);
+
+      if (response.statusCode == 200) {
+        // API call was successful
+        debugPrint("opuhsdf");
+        final chatBotResponse = ChatBotResponse.fromJson(response.data);
+        // Process the response as needed
+        setState(() {
+          _messages.add(ChatMessage(messageContent: chatBotResponse.res, messageType: "ChatBot"));
+        });
+        print(chatBotResponse);
+
+      } else {
+        // Handle API error (non-200 status code) here
+        print('API call failed with status code ${response.statusCode}');
+      }
+    } catch (e) {
+      // Handle network or other errors here
+      print('Error: $e');
+    }
+  }
+
 }
+
+
 class ChatMessage{
   String messageContent;
   String messageType;

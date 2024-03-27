@@ -1,5 +1,7 @@
-import 'package:codefury/components/botNavBar.dart';
-import 'package:codefury/screenComponents/ScreenSize.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mental/components/botNavBar.dart';
+import 'package:mental/pages/authSelection.dart';
+import 'package:mental/screenComponents/ScreenSize.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 class Profile extends StatefulWidget {
@@ -35,7 +37,7 @@ class _ProfileState extends State<Profile> {
                                 backgroundImage: AssetImage('images/mainProfile.png'), // Replace with your profile image
                               ),
                               SizedBox(height: 30,),
-                              Text("Nigga",
+                              Text("",
                                 style: GoogleFonts.montserrat(fontSize: 30,color: Colors.white,fontWeight: FontWeight.bold),),
                             ],
                           ),
@@ -99,7 +101,13 @@ class _ProfileState extends State<Profile> {
                                     fontSize: 22,color: Colors.deepOrange,fontWeight: FontWeight.bold),),
                               trailing: IconButton(
                                 icon : Icon(Icons.arrow_forward_ios_outlined),
-                                onPressed: (){},
+                                onPressed: () async {
+                                  await FirebaseAuth.instance.signOut();
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => authSelection()),
+                                  );
+                                },
                               ),
                             ),
                           ],

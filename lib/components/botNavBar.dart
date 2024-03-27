@@ -1,8 +1,8 @@
-import 'package:codefury/components/DataBloc.dart';
-import 'package:codefury/pages/chat.dart';
-import 'package:codefury/pages/dashboard.dart';
-import 'package:codefury/pages/home.dart';
-import 'package:codefury/pages/profilePage.dart';
+import 'package:mental/components/DataBloc.dart';
+import 'package:mental/pages/chat.dart';
+import 'package:mental/pages/dashboard.dart';
+import 'package:mental/pages/home.dart';
+import 'package:mental/pages/profilePage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 14),
+      // padding: const EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [
@@ -48,12 +48,7 @@ class CustomBottomNavBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                icon: MenuState.home == selectedMenu
-                    ? SvgPicture.asset(
-                  'images/botNavBar/house-fill.svg',
-                  color: Color(0xFF3FBCB1), // Set the desired color here.
-                )
-                    : SvgPicture.asset(
+                icon: SvgPicture.asset(
                   'images/botNavBar/house.svg',
                   color: Color(0xFF838383), // Set the desired color here.
                 ),
@@ -61,7 +56,7 @@ class CustomBottomNavBar extends StatelessWidget {
                     if (selectedMenu != MenuState.home) {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => home()),
+                        MaterialPageRoute(builder: (context) => home(name: "",)),
                       );
                     }
                     },
@@ -97,14 +92,6 @@ class CustomBottomNavBar extends StatelessWidget {
                   height: 23,// Set the desired color here.
                 ),
                 onPressed: () { if (selectedMenu != MenuState.chatbot) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>
-                    BlocProvider(
-                    create: (context) => DataBloc(ApiService(Dio())),
-                    child: ChatBotScreen(),
-                    ),
-                  ));
                 } },
               ),IconButton(
                 icon: MenuState.profile == selectedMenu
